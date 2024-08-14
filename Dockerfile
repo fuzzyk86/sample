@@ -1,10 +1,15 @@
-FROM python:3.10-slim
+# syntax=docker/dockerfile:1
 
-WORKDIR /python-docker
+FROM python:3.11
 
-COPY requirements.txt requirements.txt
+WORKDIR /code
+
+COPY requirements.txt .
+
 RUN pip3 install -r requirements.txt
 
 COPY . .
 
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+EXPOSE 50505
+
+ENTRYPOINT ["gunicorn", "app:app"]

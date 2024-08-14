@@ -13,8 +13,8 @@ app = Flask(__name__)
 def index():
     res = analyzer.predict("Qué gran jugador es Messi")
     print(res)
-   print('Request for index page received')
-   return render_template('index.html')
+    print('Request for index page received')
+    return render_template('index.html')
 
 @app.route('/favicon.ico')
 def favicon():

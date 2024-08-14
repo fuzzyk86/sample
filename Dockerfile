@@ -1,12 +1,15 @@
 # syntax=docker/dockerfile:1
 
-FROM python:3.11
+FROM python:3.11-slim-bullseye
 
 WORKDIR /code
 
+ENV PYTHONDONTWRITEBYTECODE=1
+
 COPY requirements.txt .
 
-RUN pip3 install -r requirements.txt
+RUN pip3 install --no-compile --no-cache-dir --upgrade pip
+RUN pip3 install --no-compile --no-cache-dir -r requirements.txt 
 
 COPY . .
 

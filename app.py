@@ -3,11 +3,16 @@ import os
 from flask import (Flask, redirect, render_template, request,
                    send_from_directory, url_for)
 
+from pysentimiento import create_analyzer
+analyzer = create_analyzer(task="sentiment", lang="es")
+
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
+    res = analyzer.predict("Qué gran jugador es Messi")
+    print(res)
    print('Request for index page received')
    return render_template('index.html')
 

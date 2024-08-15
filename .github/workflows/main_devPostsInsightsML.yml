@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://sampledkr.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_c2316e5b63de4a8c87b94ba004f35653 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_cc35e594db9f4022900b9b3223bb0a10 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_f66cf3c4de6c459a92ded894994d8395 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_43d5b97d7cb74ae1abec1d4f8678f12d }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: sampledkr.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_c2316e5b63de4a8c87b94ba004f35653 }}/sample:${{ github.sha }}
+        tags: sampledkr.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_f66cf3c4de6c459a92ded894994d8395 }}/sampledkr/sample:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'devPostsInsightsML'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_783ad478d4ba4559bf5a6bfb6da5d395 }}
-        images: 'sampledkr.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_c2316e5b63de4a8c87b94ba004f35653 }}/sample:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_def228fde50243a7b1f2debc65724757 }}
+        images: 'sampledkr.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_f66cf3c4de6c459a92ded894994d8395 }}/sampledkr/sample:${{ github.sha }}'
